@@ -1,0 +1,9 @@
+[user]
+	email = m4tx@m4tx.pl
+	name = m4tx
+[core]
+	editor = vim
+[credential]
+	helper = cache --timeout 3600
+[color]
+	ui = auto
