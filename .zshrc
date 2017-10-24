@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
   export ZSH=/home/m4tx/.oh-my-zsh
@@ -53,7 +53,9 @@ ZSH_CUSTOM=/home/m4tx/.zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git django docker npm pip python sudo virtualenvwrapper archlinux systemd)
+plugins=(git django docker npm pip python sudo virtualenvwrapper archlinux systemd zsh-syntax-highlighting)
+
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 source $ZSH/oh-my-zsh.sh
 export WORKON_HOME=~/projects/venvs
