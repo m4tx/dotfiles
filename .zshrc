@@ -3,7 +3,7 @@
 export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/m4tx/.oh-my-zsh
+export ZSH=/home/m4tx/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -53,11 +53,33 @@ ZSH_CUSTOM=/home/m4tx/.zsh-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git django docker npm pip python sudo virtualenvwrapper archlinux systemd zsh-syntax-highlighting)
+#plugins=(git django docker npm pip python sudo virtualenvwrapper archlinux systemd)
 
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+# Antigen begin
+source /usr/share/zsh/share/antigen.zsh
 
-source $ZSH/oh-my-zsh.sh
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle django
+antigen bundle docker
+antigen bundle npm
+antigen bundle pip
+antigen bundle python
+antigen bundle sudo
+antigen bundle virtualenvwrapper
+antigen bundle archlinux
+antigen bundle systemd
+antigen bundle command-not-found
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen theme bira
+
+antigen apply
+# Antigen end
+
+#source $ZSH/oh-my-zsh.sh
 export WORKON_HOME=~/projects/venvs
 
 # User configuration
