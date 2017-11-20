@@ -3,7 +3,7 @@
 export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/m4tx/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -47,7 +47,7 @@ COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=/home/m4tx/.zsh-custom
+ZSH_CUSTOM=$HOME/.zsh-custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -80,7 +80,7 @@ antigen apply
 # Antigen end
 
 #source $ZSH/oh-my-zsh.sh
-export WORKON_HOME=~/projects/venvs
+export WORKON_HOME=$HOME/projects/venvs
 
 # User configuration
 
@@ -112,3 +112,13 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias git-update-patch="git commit --amend --no-edit && git review"
 alias git-update-patch-all="git commit -a --amend --no-edit && git review"
+
+# Functions
+function swap()
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
+}
+
+# Local aliases
+source $HOME/.local_aliases
