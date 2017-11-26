@@ -3,7 +3,7 @@
 export PATH=$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -60,12 +60,14 @@ source /usr/share/zsh/share/antigen.zsh
 
 antigen use oh-my-zsh
 
+antigen bundle common-aliases
 antigen bundle git
 antigen bundle django
 antigen bundle docker
 antigen bundle npm
 antigen bundle pip
 antigen bundle python
+antigen bundle per-directory-history
 antigen bundle sudo
 antigen bundle virtualenvwrapper
 antigen bundle archlinux
@@ -73,6 +75,7 @@ antigen bundle systemd
 antigen bundle command-not-found
 
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
 
 antigen theme bira
 
