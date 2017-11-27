@@ -5,5 +5,7 @@
 	name = Mateusz Maćkowski
 [credential]
 	helper = cache --timeout 3600
+[help]
+        autocorrect = -1
 [color]
 	ui = auto
