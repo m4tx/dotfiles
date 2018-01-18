@@ -8,7 +8,7 @@ export ZSH=$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bira"
+#ZSH_THEME="bira"
 DEFAULT_USER="m4tx"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -34,7 +34,7 @@ DEFAULT_USER="m4tx"
 ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+#COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -57,6 +57,7 @@ ZSH_CUSTOM=$HOME/.zsh-custom
 
 # Antigen begin
 source /usr/share/zsh/share/antigen.zsh
+POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 antigen use oh-my-zsh
 
@@ -77,10 +78,15 @@ antigen bundle command-not-found
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 
-antigen theme bira
+antigen theme bhilburn/powerlevel9k powerlevel9k
+#antigen theme bira
 
 antigen apply
 # Antigen end
+
+# Theme
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir rbenv vcs status newline dir_writable)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs disk_usage battery)
 
 #source $ZSH/oh-my-zsh.sh
 export WORKON_HOME=$HOME/projects/venvs
