@@ -119,7 +119,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias update-config="curl -Ss https://raw.githubusercontent.com/m4tx/linux-default-config/master/install.sh | sh"
+alias update-config="curl -Ss https://raw.githubusercontent.com/m4tx/dotfiles/master/install.sh | sh"
 alias git-update-patch="git commit --amend --no-edit && git review"
 alias git-update-patch-all="git commit -a --amend --no-edit && git review"
 

@@ -33,13 +33,13 @@ function exec_cmd {
 
 function clone_repo {
 	cd /tmp &&
-	git clone --depth 1 -q https://github.com/m4tx/linux-default-config &&
-	cd linux-default-config
+	git clone --depth 1 -q https://github.com/m4tx/dotfiles &&
+	cd dotfiles
 }
 
 function rm_repo {
 	cd .. &&
-	rm -Rf linux-default-config
+	rm -Rf dotfiles
 }
 
 function copy_zshrc {
