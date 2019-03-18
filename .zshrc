@@ -74,6 +74,10 @@ antigen bundle virtualenvwrapper
 antigen bundle archlinux
 antigen bundle systemd
 antigen bundle command-not-found
+antigen bundle gradle
+antigen bundle autojump
+antigen bundle urltools
+antigen bundle encode64
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
@@ -83,6 +87,9 @@ antigen theme bhilburn/powerlevel9k powerlevel9k
 
 antigen apply
 # Antigen end
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 # Theme
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir rbenv vcs status newline dir_writable)
@@ -100,13 +107,18 @@ export WORKON_HOME=$HOME/projects/venvs
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
-  export EDITOR='vim'
+  export EDITOR='nvim'
 fi
+alias vim="nvim"
+alias vimdiff="nvim -d"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -122,12 +134,29 @@ fi
 alias update-config="curl -Ss https://raw.githubusercontent.com/m4tx/dotfiles/master/install.sh | sh"
 alias git-update-patch="git commit --amend --no-edit && git review"
 alias git-update-patch-all="git commit -a --amend --no-edit && git review"
+alias git-fast-clone="git clone --single-branch --depth 1 --recursive"
+alias removeexif="exiftool -all="
+alias vimrc="$EDITOR ~/.config/nvim/init.vim"
 
 # Functions
 function swap()
 {
     local TMPFILE=tmp.$$
     mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
+}
+
+function wordfrequency() {
+  awk '
+     BEGIN { FS="\S+" } {
+         for (i=1; i<=NF; i++) {
+             word = tolower($i)
+             words[word]++
+         }
+     }
+     END {
+         for (w in words)
+              printf("%3d %s\n", words[w], w)
+     } ' | sort -rn
 }
 
 # Local aliases
