@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pacaur -S antigen-git pkgfile
+pacaur -S antigen-git pkgfile fzf python-neovim
 sudo pkgfile --update
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
