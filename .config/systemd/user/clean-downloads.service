@@ -1,0 +1,9 @@
+[Unit]
+Description=Removes files from the user Downloads directory that are older than a week
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/clean-downloads
+
+[Install]
+WantedBy=default.target

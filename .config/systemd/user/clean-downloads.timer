@@ -1,0 +1,13 @@
+[Unit]
+Description=Run clean-downloads every day
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+Persistent=true
+OnBootSec=60
+OnCalendar=daily
+Unit=clean-downloads.service
+
+[Install]
+WantedBy=timers.target
