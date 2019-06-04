@@ -69,5 +69,5 @@ trap 'exec_cmd rm_repo "Removing the repository"' 0
 exec_cmd copy_zshrc "Copying zshrc"
 exec_cmd copy_gitconfig "Copying gitconfig"
 exec_cmd copy_config "Copying .config"
-exec_cmd copy_config "Copying .local"
+exec_cmd copy_local "Copying .local"
 
