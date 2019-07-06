@@ -2,13 +2,6 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.antigen/bundles/robbyrussell/oh-my-zsh/
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="bira"
 DEFAULT_USER="m4tx"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -49,44 +42,50 @@ HIST_STAMPS="dd.mm.yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/.zsh-custom
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-#plugins=(git django docker npm pip python sudo virtualenvwrapper archlinux systemd)
+### Added by Zplugin's installer
+source '$HOME/.zplugin/bin/zplugin.zsh'
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin's installer chunk
 
-# Antigen begin
-source /usr/share/zsh/share/antigen.zsh
-POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
+# zplugin begin
+zplugin snippet OMZ::lib/clipboard.zsh
+zplugin snippet OMZ::lib/compfix.zsh
+zplugin snippet OMZ::lib/completion.zsh
+zplugin snippet OMZ::lib/correction.zsh
+zplugin snippet OMZ::lib/directories.zsh
+zplugin snippet OMZ::lib/git.zsh
+zplugin snippet OMZ::lib/grep.zsh
+zplugin snippet OMZ::lib/history.zsh
+zplugin snippet OMZ::lib/key-bindings.zsh
+zplugin snippet OMZ::lib/spectrum.zsh
+zplugin snippet OMZ::lib/termsupport.zsh
+zplugin snippet OMZ::lib/theme-and-appearance.zsh
 
-antigen use oh-my-zsh
+zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin snippet OMZ::plugins/django/django.plugin.zsh
+zplugin snippet OMZ::plugins/docker/_docker
+zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
+zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
+zplugin snippet OMZ::plugins/python/python.plugin.zsh
+zplugin snippet OMZ::plugins/per-directory-history/per-directory-history.zsh
+zplugin snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
+zplugin snippet OMZ::plugins/systemd/systemd.plugin.zsh
+zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
+zplugin snippet OMZ::plugins/autojump/autojump.plugin.zsh
+zplugin snippet OMZ::plugins/urltools/urltools.plugin.zsh
+zplugin snippet OMZ::plugins/encode64/encode64.plugin.zsh
 
-antigen bundle common-aliases
-antigen bundle git
-antigen bundle django
-antigen bundle docker
-antigen bundle npm
-antigen bundle pip
-antigen bundle python
-antigen bundle per-directory-history
-antigen bundle sudo
-antigen bundle virtualenvwrapper
-antigen bundle archlinux
-antigen bundle systemd
-antigen bundle command-not-found
-antigen bundle gradle
-antigen bundle autojump
-antigen bundle urltools
-antigen bundle encode64
+zplugin ice from"gh"
+zplugin load bhilburn/powerlevel9k
 
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-
-antigen theme bhilburn/powerlevel9k powerlevel9k
-#antigen theme bira
-
-antigen apply
-# Antigen end
+zplugin light zsh-users/zsh-autosuggestions
+zplugin light zsh-users/zsh-syntax-highlighting
+# zplugin end
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
@@ -95,7 +94,6 @@ source /usr/share/fzf/completion.zsh
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir rbenv vcs status newline dir_writable)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs disk_usage battery)
 
-#source $ZSH/oh-my-zsh.sh
 export WORKON_HOME=$HOME/projects/venvs
 
 # User configuration
@@ -123,14 +121,8 @@ bindkey "^[[1;5D" backward-word
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Aliases
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias update-config="curl -Ss https://raw.githubusercontent.com/m4tx/dotfiles/master/install.sh | sh"
 alias git-update-patch="git commit --amend --no-edit && git review"
 alias git-update-patch-all="git commit -a --amend --no-edit && git review"
