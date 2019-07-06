@@ -46,6 +46,7 @@ ZSH_CUSTOM=$HOME/.zsh-custom
 source $HOME/.zplugin/bin/zplugin.zsh
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
+export ZSH=$HOME/.zplugin/
 
 zplugin snippet OMZ::lib/clipboard.zsh
 zplugin snippet OMZ::lib/compfix.zsh
