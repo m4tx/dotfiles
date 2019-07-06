@@ -42,11 +42,13 @@ function rm_repo {
 	rm -Rf dotfiles
 }
 
-function install_zplugin {
+function install_zplugin {(
 	if [ ! -d "$HOME/.zplugin/bin" ]; then
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+		mkdir $HOME/.zplugin &&
+		cd $HOME/.zplugin &&
+		git clone --single-branch --depth 1 -q https://github.com/zdharma/zplugin.git bin
 	fi
-}
+)}
 
 function copy_zshrc {
 	cp .zshrc $HOME/

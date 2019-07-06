@@ -42,13 +42,11 @@ HIST_STAMPS="dd.mm.yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/.zsh-custom
 
-### Added by Zplugin's installer
-source '$HOME/.zplugin/bin/zplugin.zsh'
+# zplugin begin
+source $HOME/.zplugin/bin/zplugin.zsh
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
-### End of Zplugin's installer chunk
 
-# zplugin begin
 zplugin snippet OMZ::lib/clipboard.zsh
 zplugin snippet OMZ::lib/compfix.zsh
 zplugin snippet OMZ::lib/completion.zsh
