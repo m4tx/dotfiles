@@ -47,6 +47,7 @@ source $HOME/.zplugin/bin/zplugin.zsh
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 export ZSH=$HOME/.zplugin/
+mkdir -p $HOME/.zplugin/cache
 
 zplugin snippet OMZ::lib/clipboard.zsh
 zplugin snippet OMZ::lib/compfix.zsh
@@ -63,8 +64,11 @@ zplugin snippet OMZ::lib/theme-and-appearance.zsh
 
 zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin ice as"completion"
 zplugin snippet OMZ::plugins/django/django.plugin.zsh
+zplugin ice as"completion"
 zplugin snippet OMZ::plugins/docker/_docker
+zplugin ice as"completion"
 zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
 zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
 zplugin snippet OMZ::plugins/python/python.plugin.zsh
