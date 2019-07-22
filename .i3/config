@@ -13,23 +13,28 @@ set $mod Mod4
 
 # PolicyKit auth dialogs
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# Keyring
+exec --no-startup-id ~/.config/i3/scripts/gnome-keyring.sh
 # NetworkManager applet
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
 exec --no-startup-id dropboxd
 exec --no-startup-id bluedevil-monolithic
 exec --no-startup-id ibus-daemon --xim -d -r
+# libinput options
+exec --no-startup-id xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Accel Speed' 0.5
+exec --no-startup-id xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Enabled' 1
+# Compton
+exec --no-startup-id compton --config ~/.config/compton.conf
+exec --no-startup-id xrandr --dpi 192
+# Polybar
+exec_always --no-startup-id ~/.i3/polybar.sh
 
-exec_always --no-startup-id ~/.i3/polybar.sh &
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -42,7 +47,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+x exec xkill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec rofi -show drun
 bindsym Mod1+F2 exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
