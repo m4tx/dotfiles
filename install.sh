@@ -66,6 +66,10 @@ function copy_local {
 	cp -R .local $HOME/
 }
 
+function install_systemd {
+        sudo cp -R systemd/* /etc/systemd/
+}
+
 ########
 # Main #
 ########
@@ -79,4 +83,5 @@ exec_cmd copy_zshrc "Copying zshrc"
 exec_cmd copy_gitconfig "Copying gitconfig"
 exec_cmd copy_config "Copying .config"
 exec_cmd copy_local "Copying .local"
+exec_cmd install_systemd "Installing systemd services"
 

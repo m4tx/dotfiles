@@ -1,0 +1,14 @@
+[Unit]
+Description=Run update-system every day
+RefuseManualStart=no
+RefuseManualStop=no
+
+[Timer]
+Persistent=true
+OnBootSec=180
+OnCalendar=daily
+Unit=update-system.service
+
+[Install]
+WantedBy=timers.target
+
