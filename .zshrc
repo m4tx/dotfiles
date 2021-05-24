@@ -114,6 +114,7 @@ else
 fi
 alias vim="nvim"
 alias vimdiff="nvim -d"
+alias ls="ls --hyperlink --color=tty"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -153,6 +154,9 @@ function wordfrequency() {
               printf("%3d %s\n", words[w], w)
      } ' | sort -rn
 }
+
+autoload -U compinit
+compinit
 
 # Local aliases
 source $HOME/.local_aliases
