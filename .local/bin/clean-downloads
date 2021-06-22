@@ -1,4 +1,4 @@
 #!/bin/sh
 
-find $HOME/Downloads/ -mtime +7 -type f -delete
-find $HOME/Downloads/ -mtime +7 -type d -empty -delete
+find $(xdg-user-dir DOWNLOAD) -mindepth 1 -mtime +7 -type f -delete
+find $(xdg-user-dir DOWNLOAD) -mindepth 1 -mtime +7 -type d -empty -delete
