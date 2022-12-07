@@ -79,12 +79,10 @@ zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
 zplugin snippet OMZ::plugins/systemd/systemd.plugin.zsh
 zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
-zplugin snippet OMZ::plugins/autojump/autojump.plugin.zsh
 zplugin snippet OMZ::plugins/urltools/urltools.plugin.zsh
 zplugin snippet OMZ::plugins/encode64/encode64.plugin.zsh
 
 zplugin ice from"gh"
-zplugin load bhilburn/powerlevel9k
 
 zplugin light zsh-users/zsh-autosuggestions
 zplugin light zsh-users/zsh-syntax-highlighting
@@ -94,8 +92,7 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 # Theme
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir rbenv vcs status newline dir_writable)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs disk_usage battery)
+eval "$(starship init zsh)"
 
 export WORKON_HOME=$HOME/projects/venvs
 
