@@ -42,14 +42,6 @@ function rm_repo {
 	rm -Rf dotfiles
 }
 
-function install_zplugin {(
-	if [ ! -d "$HOME/.zplugin/bin" ]; then
-		mkdir $HOME/.zplugin &&
-		cd $HOME/.zplugin &&
-		git clone --single-branch --depth 1 -q https://github.com/zdharma/zplugin.git bin
-	fi
-)}
-
 function copy_zshrc {
 	cp .zshrc $HOME/
 }
@@ -78,7 +70,6 @@ exec_cmd clone_repo "Cloning the repository"
 
 trap 'exec_cmd rm_repo "Removing the repository"' 0
 
-exec_cmd install_zplugin "Installing zplugin"
 exec_cmd copy_zshrc "Copying zshrc"
 exec_cmd copy_gitconfig "Copying gitconfig"
 exec_cmd copy_config "Copying .config"

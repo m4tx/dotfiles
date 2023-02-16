@@ -42,51 +42,65 @@ HIST_STAMPS="dd.mm.yyyy"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/.zsh-custom
 
-# zplugin begin
-source $HOME/.zplugin/bin/zplugin.zsh
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
-export ZSH=$HOME/.zplugin/
-mkdir -p $HOME/.zplugin/cache
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
 
-zplugin snippet OMZ::lib/clipboard.zsh
-zplugin snippet OMZ::lib/compfix.zsh
-zplugin snippet OMZ::lib/completion.zsh
-zplugin snippet OMZ::lib/correction.zsh
-zplugin snippet OMZ::lib/directories.zsh
-zplugin snippet OMZ::lib/git.zsh
-zplugin snippet OMZ::lib/grep.zsh
-zplugin snippet OMZ::lib/history.zsh
-zplugin snippet OMZ::lib/key-bindings.zsh
-zplugin snippet OMZ::lib/spectrum.zsh
-zplugin snippet OMZ::lib/termsupport.zsh
-zplugin snippet OMZ::lib/theme-and-appearance.zsh
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
-zplugin snippet OMZ::plugins/git/git.plugin.zsh
-zplugin ice as"completion"
-zplugin snippet OMZ::plugins/django/django.plugin.zsh
-zplugin ice as"completion"
-zplugin snippet OMZ::plugins/docker/_docker
-zplugin ice as"completion"
-zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
-zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
-zplugin snippet OMZ::plugins/python/python.plugin.zsh
-zplugin snippet OMZ::plugins/per-directory-history/per-directory-history.zsh
-zplugin snippet OMZ::plugins/sudo/sudo.plugin.zsh
-zplugin snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
-zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
-zplugin snippet OMZ::plugins/systemd/systemd.plugin.zsh
-zplugin snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
-zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
-zplugin snippet OMZ::plugins/urltools/urltools.plugin.zsh
-zplugin snippet OMZ::plugins/encode64/encode64.plugin.zsh
+# zinit begin
+zinit snippet OMZ::lib/clipboard.zsh
+zinit snippet OMZ::lib/compfix.zsh
+zinit snippet OMZ::lib/completion.zsh
+zinit snippet OMZ::lib/correction.zsh
+zinit snippet OMZ::lib/directories.zsh
+zinit snippet OMZ::lib/git.zsh
+zinit snippet OMZ::lib/grep.zsh
+zinit snippet OMZ::lib/history.zsh
+zinit snippet OMZ::lib/key-bindings.zsh
+zinit snippet OMZ::lib/spectrum.zsh
+zinit snippet OMZ::lib/termsupport.zsh
+zinit snippet OMZ::lib/theme-and-appearance.zsh
 
-zplugin ice from"gh"
+zinit snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit ice as"completion"
+zinit snippet OMZ::plugins/django/django.plugin.zsh
+zinit ice as"completion"
+zinit snippet OMZ::plugins/docker/_docker
+zinit ice as"completion"
+zinit snippet OMZ::plugins/npm/npm.plugin.zsh
+zinit snippet OMZ::plugins/pip/pip.plugin.zsh
+zinit snippet OMZ::plugins/python/python.plugin.zsh
+zinit snippet OMZ::plugins/per-directory-history/per-directory-history.zsh
+zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zinit snippet OMZ::plugins/virtualenvwrapper/virtualenvwrapper.plugin.zsh
+zinit snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
+zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
+zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zinit snippet OMZ::plugins/gradle/gradle.plugin.zsh
+zinit snippet OMZ::plugins/urltools/urltools.plugin.zsh
+zinit snippet OMZ::plugins/encode64/encode64.plugin.zsh
 
-zplugin light zsh-users/zsh-autosuggestions
-zplugin light zsh-users/zsh-syntax-highlighting
-# zplugin end
+zinit ice from"gh"
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+# zinit end
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
