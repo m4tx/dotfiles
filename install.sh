@@ -2,6 +2,16 @@
 
 set -e
 
+function check_prog {
+    if ! hash "$1" > /dev/null 2>&1; then
+        echo "Command not found: $1. Aborting..."
+        exit 1
+    fi
+}
+
+check_prog stow
+check_prog curl
+
 ############
 # Printing #
 ############
@@ -32,30 +42,12 @@ function exec_cmd {
 ###########
 
 function clone_repo {
-	cd /tmp &&
-	git clone --depth 1 -q https://github.com/m4tx/dotfiles &&
-	cd dotfiles
+	git clone --recursive https://github.com/m4tx/dotfiles "$HOME/.dotfiles" || (cd "$HOME/.dotfiles" && git pull)
+	cd "$HOME/.dotfiles"
 }
 
-function rm_repo {
-	cd .. &&
-	rm -Rf dotfiles
-}
-
-function copy_zshrc {
-	cp .zshrc $HOME/
-}
-
-function copy_gitconfig {
-	cp .gitconfig $HOME/
-}
-
-function copy_config {
-	cp -R .config $HOME/
-}
-
-function copy_local {
-	cp -R .local $HOME/
+function stow_config {
+	stow --target "$HOME" config
 }
 
 function install_systemd {
@@ -67,12 +59,6 @@ function install_systemd {
 ########
 
 exec_cmd clone_repo "Cloning the repository"
-
-trap 'exec_cmd rm_repo "Removing the repository"' 0
-
-exec_cmd copy_zshrc "Copying zshrc"
-exec_cmd copy_gitconfig "Copying gitconfig"
-exec_cmd copy_config "Copying .config"
-exec_cmd copy_local "Copying .local"
+exec_cmd copy_zshrc "Symlinking config"
 exec_cmd install_systemd "Installing systemd services"
 
