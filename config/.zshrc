@@ -72,8 +72,6 @@ zinit snippet OMZ::lib/theme-and-appearance.zsh
 zinit snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit ice as"completion"
-zinit snippet OMZ::plugins/django/django.plugin.zsh
-zinit ice as"completion"
 zinit snippet OMZ::plugins/docker/_docker
 zinit ice as"completion"
 zinit snippet OMZ::plugins/npm/npm.plugin.zsh

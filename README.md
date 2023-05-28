@@ -1,6 +1,6 @@
 dotfiles
 ===========
-Repo that contains my config files for some linux tools, especially i3 window manager.
+Repo that contains my config files for some linux tools.
 
 ## Install
 ```sh
