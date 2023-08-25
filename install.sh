@@ -11,6 +11,8 @@ function check_prog {
 
 check_prog stow
 check_prog curl
+check_prog git
+check_prog zsh
 
 ############
 # Printing #
