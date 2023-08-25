@@ -142,6 +142,7 @@ alias git-update-patch-all="git commit -a --amend --no-edit && git review"
 alias git-fast-clone="git clone --single-branch --depth 1 --recursive"
 alias removeexif="exiftool -all="
 alias vimrc="$EDITOR ~/.config/nvim/init.vim"
+alias cat="bat"
 
 # Functions
 function swap()
