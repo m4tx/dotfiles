@@ -59,6 +59,6 @@ function install_systemd {
 ########
 
 exec_cmd clone_repo "Cloning the repository"
-exec_cmd copy_zshrc "Symlinking config"
+exec_cmd stow_config "Symlinking config"
 exec_cmd install_systemd "Installing systemd services"
 
