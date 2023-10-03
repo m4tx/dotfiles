@@ -58,11 +58,9 @@ function install_deps {
 
 function clone_repo {
   git clone --recursive https://github.com/m4tx/dotfiles "$HOME/.dotfiles" || (cd "$HOME/.dotfiles" && git pull)
-  cd "$HOME/.dotfiles"
 }
 
 function stow_config {
-  cd "$HOME/.dotfiles"
   stow --target "$HOME" config
 }
 
@@ -82,5 +80,6 @@ check_prog git
 check_prog zsh
 
 exec_cmd clone_repo "Cloning the repository"
+cd "$HOME/.dotfiles"
 exec_cmd stow_config "Symlinking config"
 exec_cmd install_systemd "Installing systemd services"
