@@ -1,4 +1,9 @@
 #!/bin/sh
 
-find $(xdg-user-dir DOWNLOAD) -mindepth 1 -mtime +7 -type f -delete
-find $(xdg-user-dir DOWNLOAD) -mindepth 1 -mtime +7 -type d -empty -delete
+if [ -z "$(xdg-user-dir DOWNLOAD)" ]; then
+  echo "Downloads directory does not exists; aborting"
+  exit 0
+fi
+
+find "$(xdg-user-dir DOWNLOAD)" -mindepth 1 -mtime +7 -type f -delete
+find "$(xdg-user-dir DOWNLOAD)" -mindepth 1 -mtime +7 -type d -empty -delete
