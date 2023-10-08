@@ -50,6 +50,10 @@ function install_deps {
   "debian")
     sudo apt -y install autojump neovim zsh bat fzf tmux stow git rsync
     ;;
+  "arch")
+    sudo pacman -S pkgfile fzf python-neovim stow
+    sudo pkgfile --update
+    ;;
   *)
     echo "OS not detected; skipping"
     ;;
@@ -68,6 +72,12 @@ function install_systemd {
   sudo cp -R systemd/* /etc/systemd/
 }
 
+function create_local_aliases {
+  if [ ! -f "${HOME}/.local_aliases" ]; then
+    touch "${HOME}/.local_aliases"
+  fi
+}
+
 ########
 # Main #
 ########
@@ -83,3 +93,4 @@ exec_cmd clone_repo "Cloning the repository"
 cd "$HOME/.dotfiles"
 exec_cmd stow_config "Symlinking config"
 exec_cmd install_systemd "Installing systemd services"
+exec_cmd create_local_aliases "Creating ~/.local_aliases if it does not exist"

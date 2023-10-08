@@ -168,3 +168,6 @@ format = '\[[$symbol($version)]($style)\]'
 
 [zig]
 format = '\[[$symbol($version)]($style)\]'
+
+[status]
+disabled = false
