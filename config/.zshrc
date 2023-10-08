@@ -95,7 +95,7 @@ bindkey "^[[1;5D" backward-word
 
 # Aliases
 # For a full list of active aliases, run `alias`.
-alias update-config="curl -Ss https://raw.githubusercontent.com/m4tx/dotfiles/master/install.sh | sh"
+alias update-config="curl -Ss https://raw.githubusercontent.com/m4tx/dotfiles/master/install.sh | bash"
 alias git-update-patch="git commit --amend --no-edit && git review"
 alias git-update-patch-all="git commit -a --amend --no-edit && git review"
 alias git-fast-clone="git clone --single-branch --depth 1 --recursive"
