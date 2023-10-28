@@ -27,6 +27,7 @@ zinit snippet OMZ::lib/compfix.zsh
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::lib/correction.zsh
 zinit snippet OMZ::lib/directories.zsh
+zinit snippet OMZ::lib/functions.zsh
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::lib/grep.zsh
 zinit snippet OMZ::lib/history.zsh
