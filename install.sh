@@ -51,7 +51,7 @@ function install_deps {
     sudo apt -y install autojump neovim zsh bat fzf tmux stow git rsync
     ;;
   "arch")
-    sudo pacman -S pkgfile fzf python-neovim stow
+    sudo pacman -S --noconfirm pkgfile fzf python-neovim stow starship bat
     sudo pkgfile --update
     ;;
   *)
