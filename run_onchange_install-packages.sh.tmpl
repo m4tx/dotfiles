@@ -1,0 +1,22 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+OS_RELEASE_FILE="/etc/os-release"
+if [ ! -f "${OS_RELEASE_FILE}" ]; then
+  echo "${OS_RELEASE_FILE} does not exist; skipping"
+  return
+fi
+
+source "${OS_RELEASE_FILE}"
+case "$ID" in
+"debian")
+  sudo apt -y install autojump neovim zsh bat fzf tmux stow git rsync
+  ;;
+"arch")
+  sudo pacman -S --noconfirm pkgfile fzf python-neovim stow starship bat
+  sudo pkgfile --update
+  ;;
+*)
+  echo "OS not detected; skipping"
+  ;;
+esac
+{{ end -}}
