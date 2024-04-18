@@ -15,7 +15,7 @@ case "$ID" in
   sudo apt -y install autojump neovim zsh bat fzf tmux stow git rsync
   ;;
 "arch")
-  sudo pacman -S --noconfirm pkgfile fzf python-neovim stow starship bat
+  sudo pacman -S --noconfirm --needed pkgfile fzf python-neovim stow starship bat
   sudo pkgfile --update
   ;;
 *)
