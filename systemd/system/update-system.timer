@@ -11,4 +11,3 @@ Unit=update-system.service
 
 [Install]
 WantedBy=timers.target
-

@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+sudo ln -sf /home/m4tx/.zshrc /root/
+sudo mkdir -p /root/.config
+sudo ln -sf /home/m4tx/.config/starship.toml /root/.config/
+{{ end -}}

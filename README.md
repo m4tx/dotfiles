@@ -1,9 +1,20 @@
 dotfiles
 ===========
+
 Repo that contains my config files for some linux tools.
 
 ## Install
+
+For Arch Linux:
+
 ```sh
-curl https://raw.githubusercontent.com/m4tx/dotfiles/master/install.sh | bash
+pacman -S --noconfirm chezmoi && chezmoi init --apply m4tx
 ```
-After installing, the config can be easily updated by using `update-config` zsh alias.
+
+Or, for other distributions:
+
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply m4tx
+```
+
+After installing, the config can be easily updated by running `chezmoi update`.

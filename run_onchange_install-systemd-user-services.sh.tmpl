@@ -1,0 +1,5 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+systemctl enable --now --user clean-downloads.timer
+{{ end -}}
