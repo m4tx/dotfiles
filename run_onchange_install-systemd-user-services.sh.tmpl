@@ -1,5 +1,7 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 
+echo "\033[0;1mEnabling systemd services...\033[0m"
+
 systemctl enable --now --user clean-downloads.timer
 {{ end -}}

@@ -1,6 +1,8 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 
+echo "\033[0;1mSetting up root config...\033[0m"
+
 sudo ln -sf /home/m4tx/.zshrc /root/
 sudo mkdir -p /root/.config
 sudo ln -sf /home/m4tx/.config/starship.toml /root/.config/

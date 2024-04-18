@@ -1,5 +1,8 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
+
+echo "\033[0;1mInstalling packages...\033[0m"
+
 OS_RELEASE_FILE="/etc/os-release"
 if [ ! -f "${OS_RELEASE_FILE}" ]; then
   echo "${OS_RELEASE_FILE} does not exist; skipping"
