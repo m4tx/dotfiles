@@ -1,7 +1,7 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 
-echo "\033[0;1mInstalling packages...\033[0m"
+printf "\033[0;1mInstalling packages...\033[0m\n"
 
 OS_RELEASE_FILE="/etc/os-release"
 if [ ! -f "${OS_RELEASE_FILE}" ]; then
