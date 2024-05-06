@@ -102,9 +102,9 @@ alias git-update-patch-all="git commit -a --amend --no-edit && git review"
 alias git-fast-clone="git clone --single-branch --depth 1 --recursive"
 alias removeexif="exiftool -all="
 alias vimrc="$EDITOR ~/.config/nvim/init.vim"
-if ! hash "bat" >/dev/null 2>&1; then
+if type "bat" &>/dev/null; then
     alias cat="bat"
-elif ! hash "batcat" >/dev/null 2>&1; then
+elif type "batcat" &>/dev/null; then
     alias cat="batcat"
 fi
 
