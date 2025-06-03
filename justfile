@@ -1,5 +1,6 @@
 alias u := update-all
 alias uu := update-all-and-reboot
+alias up := update-all-and-poweroff
 
 update-pacman:
     paru -Syu --noconfirm
@@ -16,6 +17,11 @@ update-flatpak:
 reboot:
     sudo systemctl reboot
 
+poweroff:
+    sudo systemctl poweroff
+
 update-all: update-pacman update-rust update-cargo update-flatpak
 
 update-all-and-reboot: update-all reboot
+
+update-all-and-poweroff: update-all poweroff
