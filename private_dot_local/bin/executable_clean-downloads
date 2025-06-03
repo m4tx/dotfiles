@@ -1,9 +1,116 @@
-#!/bin/sh
+#!/usr/bin/env python3
 
-if [ -z "$(xdg-user-dir DOWNLOAD)" ]; then
-  echo "Downloads directory does not exists; aborting"
-  exit 0
-fi
+import os
+import subprocess
+import time
+import logging
+from pathlib import Path
 
-find "$(xdg-user-dir DOWNLOAD)" -mindepth 1 -mtime +7 -type f -delete
-find "$(xdg-user-dir DOWNLOAD)" -mindepth 1 -mtime +7 -type d -empty -delete
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
+
+def get_downloads_dir():
+    result = subprocess.run(['xdg-user-dir', 'DOWNLOAD'],
+                          capture_output=True, text=True, check=True)
+    downloads_path = result.stdout.strip()
+    if not downloads_path or not os.path.exists(downloads_path):
+        raise Exception(f"xdg-user-dir returned an invalid path: `{downloads_path}`")
+    return Path(downloads_path)
+
+def is_older_than_days(file_path: Path, days=7):
+    try:
+        stat = file_path.lstat()
+        # Use the most recent of creation time, modification time, or access time
+        # This ensures we don't delete recently accessed files
+        most_recent = max(stat.st_ctime, stat.st_mtime, stat.st_atime)
+        age_seconds = time.time() - most_recent
+        age_days = age_seconds / (24 * 60 * 60)
+        return age_days > days
+    except (OSError, IOError) as e:
+        logging.warning(f"Could not get stats for {file_path}: {e}")
+        return False
+
+def remove_empty_dirs(directory):
+    try:
+        for root, dirs, files in os.walk(directory, topdown=False):
+            for dirname in dirs:
+                dir_path = Path(root) / dirname
+                try:
+                    if dir_path.exists() and not any(dir_path.iterdir()) and not dir_path.is_symlink():
+                        dir_path.rmdir()
+                        logging.info(f"Removed empty directory: {dir_path}")
+                except OSError as e:
+                    logging.warning(f"Could not remove directory {dir_path}: {e}")
+    except OSError as e:
+        logging.error(f"Error walking directory tree: {e}")
+
+def cleanup_downloads(days=7, dry_run=False):
+    downloads_dir = get_downloads_dir()
+
+    if not downloads_dir.exists():
+        logging.error(f"Downloads directory does not exist: {downloads_dir}")
+        return
+
+    logging.info(f"Cleaning up files older than {days} days from: {downloads_dir}")
+    if dry_run:
+        logging.info("DRY RUN MODE - No files will be deleted")
+
+    removed_files = 0
+    total_size = 0
+
+    try:
+        for root, dirs, files in os.walk(downloads_dir):
+            for filename in files:
+                file_path = Path(root) / filename
+
+                try:
+                    if is_older_than_days(file_path, days):
+                        file_size = file_path.stat().st_size
+
+                        if dry_run:
+                            logging.info(f"Would remove: {file_path} ({file_size} bytes)")
+                        else:
+                            file_path.unlink()
+                            logging.info(f"Removed: {file_path} ({file_size} bytes)")
+
+                        removed_files += 1
+                        total_size += file_size
+
+                except (OSError, IOError) as e:
+                    logging.warning(f"Could not process {file_path}: {e}")
+
+        if not dry_run and removed_files > 0:
+            remove_empty_dirs(downloads_dir)
+
+        size_mb = total_size / (1024 * 1024)
+        logging.info(f"Cleanup complete: {removed_files} files, {size_mb:.2f} MB")
+
+    except OSError as e:
+        logging.error(f"Error during cleanup: {e}")
+
+def main():
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Clean up old files from downloads directory')
+    parser.add_argument('--days', type=int, default=7,
+                       help='Remove files older than this many days (default: 7)')
+    parser.add_argument('--dry-run', action='store_true',
+                       help='Show what would be deleted without actually deleting')
+
+    args = parser.parse_args()
+
+    try:
+        cleanup_downloads(days=args.days, dry_run=args.dry_run)
+    except KeyboardInterrupt:
+        logging.info("Cleanup interrupted by user")
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        raise
+
+if __name__ == '__main__':
+    main()
