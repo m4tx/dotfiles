@@ -14,13 +14,15 @@ logging.basicConfig(
     ]
 )
 
+
 def get_downloads_dir():
     result = subprocess.run(['xdg-user-dir', 'DOWNLOAD'],
-                          capture_output=True, text=True, check=True)
+                            capture_output=True, text=True, check=True)
     downloads_path = result.stdout.strip()
     if not downloads_path or not os.path.exists(downloads_path):
         raise Exception(f"xdg-user-dir returned an invalid path: `{downloads_path}`")
     return Path(downloads_path)
+
 
 def is_older_than_days(file_path: Path, days=7):
     try:
@@ -35,6 +37,7 @@ def is_older_than_days(file_path: Path, days=7):
         logging.warning(f"Could not get stats for {file_path}: {e}")
         return False
 
+
 def remove_empty_dirs(directory):
     try:
         for root, dirs, files in os.walk(directory, topdown=False):
@@ -48,6 +51,7 @@ def remove_empty_dirs(directory):
                     logging.warning(f"Could not remove directory {dir_path}: {e}")
     except OSError as e:
         logging.error(f"Error walking directory tree: {e}")
+
 
 def cleanup_downloads(days=7, dry_run=False):
     downloads_dir = get_downloads_dir()
@@ -93,14 +97,15 @@ def cleanup_downloads(days=7, dry_run=False):
     except OSError as e:
         logging.error(f"Error during cleanup: {e}")
 
+
 def main():
     import argparse
 
     parser = argparse.ArgumentParser(description='Clean up old files from downloads directory')
     parser.add_argument('--days', type=int, default=7,
-                       help='Remove files older than this many days (default: 7)')
+                        help='Remove files older than this many days (default: 7)')
     parser.add_argument('--dry-run', action='store_true',
-                       help='Show what would be deleted without actually deleting')
+                        help='Show what would be deleted without actually deleting')
 
     args = parser.parse_args()
 
@@ -111,6 +116,7 @@ def main():
     except Exception as e:
         logging.error(f"Unexpected error: {e}")
         raise
+
 
 if __name__ == '__main__':
     main()
