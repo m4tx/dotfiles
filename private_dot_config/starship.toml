@@ -1,8 +1,9 @@
 format = "$all"
 
 [directory]
-truncation_length = 3
+truncation_length = 4
 truncation_symbol = "…/"
+fish_style_pwd_dir_length = 1
 
 [aws]
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
