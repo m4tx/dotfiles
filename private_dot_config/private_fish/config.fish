@@ -7,6 +7,10 @@ if status is-interactive
         alias cat="batcat"
     end
 
+    set -U fish_user_paths $HOME/.local/bin
+
     zoxide init fish | source
-    source (/usr/bin/starship init fish --print-full-init | psub)
 end
+
+source (/usr/bin/starship init fish --print-full-init | psub)
+
