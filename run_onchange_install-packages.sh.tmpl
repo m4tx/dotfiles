@@ -12,10 +12,10 @@ fi
 source "${OS_RELEASE_FILE}"
 case "$ID" in
 "debian")
-  sudo apt -y install autojump neovim zsh bat fzf tmux stow git rsync
+  sudo apt -y install autojump neovim fish bat fzf tmux git rsync git-delta
   ;;
 "arch")
-  sudo pacman -S --noconfirm --needed pkgfile fzf python-neovim stow starship bat
+  sudo pacman -S --noconfirm --needed fish pkgfile fzf python-neovim starship bat zoxide git-delta
   sudo pkgfile --update
   ;;
 *)
