@@ -21,7 +21,13 @@ def get_downloads_dir():
     downloads_path = result.stdout.strip()
     if not downloads_path or not os.path.exists(downloads_path):
         raise Exception(f"xdg-user-dir returned an invalid path: `{downloads_path}`")
-    return Path(downloads_path)
+
+    downloads_path = Path(downloads_path)
+    home = Path.home()
+    if home == downloads_path:
+        raise Exception(f"downloads path is the same as $HOME: `{downloads_path}`")
+
+    return downloads_path
 
 
 def is_older_than_days(file_path: Path, days=7):
