@@ -8,7 +8,7 @@ Repo that contains my config files for some linux tools.
 For Arch Linux:
 
 ```sh
-pacman -S --noconfirm chezmoi && chezmoi init --apply m4tx
+sudo pacman -S --noconfirm chezmoi && bash -c "chezmoi init --apply m4tx"
 ```
 
 Or, for other distributions:
